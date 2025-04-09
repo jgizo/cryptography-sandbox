@@ -1,0 +1,3 @@
+# requirements.txt
+# List any project dependencies here
+# e.g. pycryptodome==3.17
