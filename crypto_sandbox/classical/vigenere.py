@@ -1,7 +1,4 @@
-# vigenere.py
 def encrypt(plaintext: str, key: str) -> str:
-    # TODO: Implement Vigenere encryption
-
     encryption = list()
     key_lower = key.lower()
 
@@ -18,8 +15,6 @@ def encrypt(plaintext: str, key: str) -> str:
     return ''.join(encryption)
 
 def decrypt(ciphertext: str, key: str) -> str:
-    # TODO: Implement Vigenere decryption
-
     decryption = list()
     key_lower = key.lower()
 
