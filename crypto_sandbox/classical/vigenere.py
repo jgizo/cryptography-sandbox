@@ -34,6 +34,3 @@ def decrypt(ciphertext: str, key: str) -> str:
         decryption.append(chr(p_i))
 
     return ''.join(decryption)
-
-print(encrypt("Hello", "hii"))
-print(decrypt("omtsw", "hii"))
