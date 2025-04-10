@@ -20,5 +20,3 @@ def encrypt(plaintext: str, key: int) -> str:
 def decrypt(ciphertext: str, key: int) -> str:
     # TODO: Implement rail fence decryption
     pass
-
-print(encrypt("WE ARE DISCOVERED. RUN AT ONCE.", 3))
