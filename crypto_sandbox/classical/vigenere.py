@@ -6,6 +6,10 @@ def encrypt(plaintext: str, key: str) -> str:
         key_i = i % len(key) #keep the index rotating in key to adjust for when index returns to 0
         base = 'A' if plaintext[i].isupper() else 'a'
 
+        if not plaintext[i].isalpha():
+            encryption.append(plaintext[i])
+            continue
+    
         p_i = ord(plaintext[i]) - ord(base)
         k_i = ord(key_lower[key_i]) - ord('a')
         c_i = ((p_i + k_i) % 26) + ord(base)
@@ -22,6 +26,10 @@ def decrypt(ciphertext: str, key: str) -> str:
         key_i = i % len(key)
         base = 'A' if ciphertext[i].isupper() else 'a'
 
+        if not ciphertext[i].isalpha():
+            decryption.append(ciphertext[i])
+            continue
+        
         c_i = ord(ciphertext[i]) - ord(base)
         k_i = ord(key_lower[key_i]) - ord('a')
         p_i = ((c_i - k_i) % 26) + ord(base)
@@ -29,3 +37,6 @@ def decrypt(ciphertext: str, key: str) -> str:
         decryption.append(chr(p_i))
 
     return ''.join(decryption)
+
+print(encrypt("hello!", "hi"))
+print(decrypt("omstv!", "hi"))
