@@ -1,42 +1,36 @@
+ALPHA = 26
+
+def _vigenere(text: str, key: str, decrypt: bool = False) -> str:
+    key = key.lower()
+    key_len = len(key)
+    if key_len == 0:
+        raise ValueError("Key must not be empty.")
+
+    out   = []
+    k_pos = 0
+
+    for ch in text:
+        if ch.isalpha():
+            base = ord('A') if ch.isupper() else ord('a')
+            offset = ord(ch) - base
+            k = ord(key[k_pos % key_len]) - ord('a')
+
+            if decrypt:
+                val = (offset - k) % ALPHA
+            else:
+                val = (offset + k) % ALPHA
+
+            out.append(chr(base + val))
+            k_pos += 1
+        else:
+            out.append(ch)
+
+    return "".join(out)
+
 def encrypt(plaintext: str, key: str) -> str:
-    encryption = list()
-    key_lower = key.lower()
-
-    for i in range(0, len(plaintext)):
-        key_i = i % len(key) #keep the index rotating in key to adjust for when index returns to 0
-        base = 'A' if plaintext[i].isupper() else 'a'
-
-        if not plaintext[i].isalpha():
-            encryption.append(plaintext[i])
-            continue
-    
-        p_i = ord(plaintext[i]) - ord(base)
-        k_i = ord(key_lower[key_i]) - ord('a')
-        c_i = ((p_i + k_i) % 26) + ord(base)
-
-        encryption.append(chr(c_i))
-
-    return ''.join(encryption)
+    return _vigenere(plaintext, key, decrypt=False)
 
 def decrypt(ciphertext: str, key: str) -> str:
-    decryption = list()
-    key_lower = key.lower()
+    return _vigenere(ciphertext, key, decrypt=True)
 
-    for i in range(0, len(ciphertext)):
-        key_i = i % len(key)
-        base = 'A' if ciphertext[i].isupper() else 'a'
 
-        if not ciphertext[i].isalpha():
-            decryption.append(ciphertext[i])
-            continue
-        
-        c_i = ord(ciphertext[i]) - ord(base)
-        k_i = ord(key_lower[key_i]) - ord('a')
-        p_i = ((c_i - k_i) % 26) + ord(base)
-
-        decryption.append(chr(p_i))
-
-    return ''.join(decryption)
-
-print(encrypt("hello!", "hi"))
-print(decrypt("omstv!", "hi"))

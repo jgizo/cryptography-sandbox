@@ -15,3 +15,6 @@ def encrypt(plaintext: str, shift: int) -> str:
 
 def decrypt(ciphertext: str, shift: int) -> str:
     return encrypt(ciphertext, shift*-1)
+
+def ROT13(plaintext: str, shift: int) -> str:
+    return encrypt(plaintext, 13)
