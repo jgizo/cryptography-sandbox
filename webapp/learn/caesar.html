@@ -1,0 +1,60 @@
+<!-- webapp/learn/caesar.html -->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Caesar Cipher – How it Works</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@5.3.2/dist/solar/bootstrap.min.css">
+
+</head>
+<body class="container py-4">
+  <h1>Caesar Cipher</h1>
+  <p>The Caesar cipher is a classical substitution cipher, and one that is very iconic. This cipher operates by taking a letter's position in the alphabet (A=1, B=2, ...), 
+    and shifting its position by <em>k</em> positions. </p>
+
+    <h3 class="mt-4">Worked Example (shift&nbsp;= 3)</h3>
+
+    <pre class="bg-dark p-3 rounded">
+    Plain : HELLO WORLD
+    Cipher: KHOOR ZRUOG
+    </pre>
+    
+    <p>
+    The Caesar cipher replaces each letter with the one <em>k</em> positions further
+    down the alphabet.  With <strong>k = 3</strong>:
+    </p>
+    
+    <ul>
+      <li><code>H</code> is the 8<sup>th</sup> letter (index&nbsp;7 if you start at 0).  
+          Add&nbsp;3 → index&nbsp;10 → <code>K</code>.</li>
+      <li><code>E</code> (index&nbsp;4) + 3 → <code>H</code></li>
+      <li><code>L</code> (index&nbsp;11) + 3 → <code>O</code></li>
+      <li>⋯</li>
+    </ul>
+    
+    <p>
+    When the shift would “fall off” the end of the alphabet, we wrap around by
+    taking the result <strong>mod 26</strong> (there are 26 letters):
+    </p>
+    
+    <div class="mb-3">
+      <code>W</code> → index&nbsp;22 &nbsp;+ 8&nbsp;= 30 → 30&nbsp;mod&nbsp;26&nbsp;=&nbsp;4 → <code>E</code>
+    </div>
+    
+    <h4 class="mt-4">Alphabet ↔ Index reference</h4>
+    <table class="table table-sm table-bordered table-dark w-auto">
+      <tbody class="text-center">
+        <tr><th scope="row">Letter</th>
+          <td>A</td><td>B</td><td>C</td><td>D</td><td>E</td><td>F</td><td>G</td><td>H</td><td>I</td><td>J</td><td>K</td><td>L</td><td>M</td>
+          <td>N</td><td>O</td><td>P</td><td>Q</td><td>R</td><td>S</td><td>T</td><td>U</td><td>V</td><td>W</td><td>X</td><td>Y</td><td>Z</td>
+        </tr>
+        <tr><th scope="row">Index&nbsp;(A=0)</th>
+          <td>0</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td>
+          <td>13</td><td>14</td><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td><td>20</td><td>21</td><td>22</td><td>23</td><td>24</td><td>25</td>
+        </tr>
+      </tbody>
+    </table>
+
+  <a class="btn btn-secondary" href="../index.html">← Back</a>
+</body>
+</html>

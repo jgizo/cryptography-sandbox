@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Affine Cipher – How it Works</title>
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootswatch@5.3.2/dist/solar/bootstrap.min.css">
+</head>
+
+<body class="container py-4">
+  <h1>Affine Cipher</h1>
+
+  <p>
+    The Affine cipher is a <strong>mono-alphabetic substitution</strong> that
+    combines a multiplicative key and an additive key:
+  </p>
+
+  <pre class="bg-dark p-2 rounded d-inline-block">
+Encryption&nbsp;:  C = (a · P + b) mod 26
+Decryption&nbsp;:  P = a⁻¹ · (C − b) mod 26
+  </pre>
+
+  <p>
+    Two integers form the key pair&nbsp;<strong>(a, b)</strong>.&nbsp;
+    <em>a</em> must be coprime with 26 so that its modular inverse <strong>a⁻¹</strong> exists.
+  </p>
+
+  <p class="mt-3">
+    <strong>Example we’ll follow:</strong><br>
+    plaintext&nbsp;=&nbsp;<code>AFFINE</code>,&nbsp;
+    a&nbsp;=&nbsp;5,&nbsp; b&nbsp;=&nbsp;8
+  </p>
+
+  <!-- Step 1 -->
+  <h4 class="mt-4">Step&nbsp;1 — Encryption table</h4>
+
+  <table class="table table-dark table-bordered text-center w-auto">
+    <thead>
+      <tr>
+        <th>#</th><th>Plain</th><th>P</th>
+        <th>(a·P&nbsp;+&nbsp;b) mod 26</th><th>Cipher</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>1</td><td>A</td><td>0</td><td>(5·0+8)=8</td><td>L</td></tr>
+      <tr><td>2</td><td>F</td><td>5</td><td>(5·5+8)=33→7</td><td>H</td></tr>
+      <tr><td>3</td><td>F</td><td>5</td><td>7</td><td>H</td></tr>
+      <tr><td>4</td><td>I</td><td>8</td><td>(5·8+8)=48→22</td><td>W</td></tr>
+      <tr><td>5</td><td>N</td><td>13</td><td>(5·13+8)=73→21</td><td>V</td></tr>
+      <tr><td>6</td><td>E</td><td>4</td><td>(5·4+8)=28→2</td><td>C</td></tr>
+    </tbody>
+  </table>
+
+  <p>
+    Ciphertext produced: <strong><code>IHHWVC</code></strong>.
+  </p>
+
+  <!-- Step 2 -->
+  <h4 class="mt-4">Step&nbsp;2 — Decryption table</h4>
+
+  <p><em>a</em> = 5 ⇒ a⁻¹ = 21 because 5·21 ≡ 1&nbsp;(mod 26).</p>
+
+  <table class="table table-dark table-bordered text-center w-auto">
+    <thead>
+      <tr>
+        <th>#</th><th>Cipher</th><th>C</th>
+        <th>(C&nbsp;−&nbsp;b)</th><th>a⁻¹·(C−b) mod 26</th><th>Plain</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>1</td><td>I</td><td>8</td><td>0</td><td>0</td><td>A</td></tr>
+      <tr><td>2</td><td>H</td><td>7</td><td>−1→25</td><td>21·25=525→5</td><td>F</td></tr>
+      <tr><td>3</td><td>H</td><td>7</td><td>25</td><td>5</td><td>F</td></tr>
+      <tr><td>4</td><td>W</td><td>22</td><td>14</td><td>21·14=294→8</td><td>I</td></tr>
+      <tr><td>5</td><td>V</td><td>21</td><td>13</td><td>21·13=273→13</td><td>N</td></tr>
+      <tr><td>6</td><td>C</td><td>2</td><td>−6→20</td><td>21·20=420→4</td><td>E</td></tr>
+    </tbody>
+  </table>
+
+  <p>
+    We recover the original plaintext
+    <strong><code>AFFINE</code></strong>.
+  </p>
+
+  <!-- alphabet table -->
+  <h4 class="mt-4">Alphabet ↔ Index reference</h4>
+  <table class="table table-sm table-bordered table-dark w-auto">
+    <tbody class="text-center">
+      <tr><th scope="row">Letter</th>
+        <td>A</td><td>B</td><td>C</td><td>D</td><td>E</td><td>F</td><td>G</td><td>H</td><td>I</td><td>J</td><td>K</td><td>L</td><td>M</td>
+        <td>N</td><td>O</td><td>P</td><td>Q</td><td>R</td><td>S</td><td>T</td><td>U</td><td>V</td><td>W</td><td>X</td><td>Y</td><td>Z</td>
+      </tr>
+      <tr><th scope="row">Index&nbsp;(A=0)</th>
+        <td>0</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td>
+        <td>13</td><td>14</td><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td><td>20</td><td>21</td><td>22</td><td>23</td><td>24</td><td>25</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <a class="btn btn-secondary" href="../index.html">← Back</a>
+</body>
+</html>

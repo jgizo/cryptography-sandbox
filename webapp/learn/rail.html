@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Rail-Fence Cipher – How it Works</title>
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootswatch@5.3.2/dist/solar/bootstrap.min.css">
+</head>
+
+<body class="container py-4">
+  <h1>Rail-Fence Cipher</h1>
+
+  <p>
+    The Rail-Fence cipher is a <strong>transposition</strong> cipher.
+    Letters are written in a zig-zag pattern across several “rails” then
+    read row-by-row to form the ciphertext.
+  </p>
+
+  <p class="mt-3">
+    <strong>Example we’ll follow:</strong><br>
+    plaintext&nbsp;=&nbsp;<code>WEAREDISCOVEREDFLEEATONCE</code>,
+    rails&nbsp;=&nbsp;3
+  </p>
+
+  <!-- Step 1 -->
+  <h4 class="mt-3">Step&nbsp;1 — Write the zig-zag</h4>
+  <pre class="bg-dark p-3 rounded">
+W . . . E . . . C . . . R . . . L . . . T . . . E
+. E . R . D . S . O . E . E . F . E . A . O . C .
+. . A . . . I . . . V . . . D . . . E . . . N . .
+  </pre>
+
+  <!-- Step 2 -->
+  <h4 class="mt-4">Step&nbsp;2 — Read row-by-row</h4>
+  <p>Concatenate the rows to get the ciphertext:</p>
+  <pre class="bg-dark p-2 rounded d-inline-block">WECRLTEERDSOEEFEAOCAIVDEN</pre>
+
+  <!-- Step 3 -->
+  <h4 class="mt-4">Step&nbsp;3 — How decryption works</h4>
+  <p>
+    We can’t just write the ciphertext diagonally because we no longer know the
+    zig-zag order.  Instead, we rebuild it in two passes:
+  </p>
+  <ol>
+    <li><strong>Mark</strong> every diagonal position with a placeholder (<code>*</code>).</li>
+    <li><strong>Fill</strong> those placeholders row-by-row with the ciphertext.</li>
+  </ol>
+
+  <div class="row">
+    <div class="col-md-6">
+      <h5 class="fs-6">3&nbsp;a) Placeholder pattern</h5>
+<pre class="bg-dark p-2 rounded">
+* . . . * . . . * . . . * . . . * . . . *
+. * . * . * . * . * . * . * . * . * . * .
+. . * . . . * . . . * . . . * . . . * . .
+</pre>
+    </div>
+
+    <div class="col-md-6">
+      <h5 class="fs-6">3&nbsp;b) Filled with ciphertext</h5>
+<pre class="bg-dark p-2 rounded">
+W . . . E . . . C . . . R . . . L . . . T . . . E
+. E . R . D . S . O . E . E . F . E . A . O . C .
+. . A . . . I . . . V . . . D . . . E . . . N . .
+</pre>
+    </div>
+  </div>
+
+  <p class="mt-3">
+    Finally, follow the rails diagonally (top → bottom → top …) to recover the
+    plaintext <code>WEAREDISCOVEREDFLEEATONCE</code>.
+  </p>
+
+  <a class="btn btn-secondary" href="../index.html">← Back</a>
+</body>
+</html>
