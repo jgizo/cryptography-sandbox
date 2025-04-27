@@ -1,3 +1,4 @@
-# requirements.txt
-# List any project dependencies here
-# e.g. pycryptodome==3.17
+fastapi
+uvicorn[standard]
+pydantic
+bootstrap5icons==1.10 
