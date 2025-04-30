@@ -1,6 +1,5 @@
 import math
 
-# rail_fence.py
 def encrypt(plaintext: str, key: int, keep_nonalpha: bool) -> str:
     #key = "rails"
 
