@@ -15,5 +15,4 @@ def is_prime(n: int) -> bool:
     
 
 def generate_prime(bits: int) -> int:
-    # TODO: Generate a prime number of the specified bit length
     pass
